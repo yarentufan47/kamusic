@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="audio-player">
-    <audio controls>
+    <audio id="audio">
       <source src="kamusic.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
@@ -19,11 +19,22 @@
 /* Center the audio player */
 .audio-player {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
 }
 
 </style>
+<script>
+const audio = document.getElementById("audio");
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "c" || event.key === "C") {
+    audio.play();
+  }
+});
+
+</script>
 </body>
 </html>
