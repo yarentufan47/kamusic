@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audio Player</title>
+<title>MP3 Player</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="audio-player">
     <audio id="audio">
-      <source src="kamusic.mp3" type="audio/mpeg">
+      <source src="kamusic.mp3" type="audio/mp3">
       Your browser does not support the audio element.
     </audio>
+    <button id="start-button">Start Music</button>
   </div>
 
   <script src="script.js"></script>
@@ -28,11 +29,22 @@
 </style>
 <script>
 const audio = document.getElementById("audio");
+const startButton = document.getElementById("start-button");
 
-document.addEventListener("keydown", function(event) {
-  if (event.key === "c" || event.key === "C") {
-    audio.play();
-  }
+startButton.addEventListener("click", function() {
+  audio.play();
+  startButton.disabled = true;
+});
+
+audio.addEventListener("ended", function() {
+  startButton.disabled = false;
+});
+
+// Automatically click the "Start Music" button after 3 seconds
+window.addEventListener("load", function() {
+  setTimeout(function() {
+    startButton.click();
+  }, 3000);
 });
 
 </script>
